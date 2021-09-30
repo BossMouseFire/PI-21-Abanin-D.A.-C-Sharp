@@ -12,7 +12,7 @@ namespace WindowsFormPlane
 {
     public partial class FormPlane : Form
     {
-        private Bomber bomber;
+        private ITransport plane;
 
         public FormPlane()
         {
@@ -24,17 +24,23 @@ namespace WindowsFormPlane
             Bitmap bmp = new Bitmap(pictureBoxBomber.Width, pictureBoxBomber.Height);
             Graphics gr = Graphics.FromImage(bmp);
 
-            bomber.DrawBomber(gr);
+            plane.DrawTransport(gr);
             pictureBoxBomber.Image = bmp;
         }
 
-        private void buttonCreate_Click(object sender, EventArgs e)
+        private void buttonCreatePlane_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            bomber = new Bomber();
-            bomber.Init(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black, Color.DarkRed, true, true);
-            bomber.SetPosition(100, 100, pictureBoxBomber.Width, pictureBoxBomber.Height);
+            plane = new Plane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black);
+            plane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBomber.Width, pictureBoxBomber.Height);
+            Draw();
+        }
 
+        private void buttonCreateBomber_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            plane = new Bomber(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black, Color.DarkRed, true, true);
+            plane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBomber.Width, pictureBoxBomber.Height);
             Draw();
         }
 
@@ -45,19 +51,21 @@ namespace WindowsFormPlane
             switch (name)
             {
                 case "buttonUp":
-                    bomber.MoveTransport(Direction.Up);
+                    plane.MoveTransport(Direction.Up);
                     break;
                 case "buttonDown":
-                    bomber.MoveTransport(Direction.Down);
+                    plane.MoveTransport(Direction.Down);
                     break;
                 case "buttonLeft":
-                    bomber.MoveTransport(Direction.Left);
+                    plane.MoveTransport(Direction.Left);
                     break;
                 case "buttonRight":
-                    bomber.MoveTransport(Direction.Right);
+                    plane.MoveTransport(Direction.Right);
                     break;
             }
             Draw();
         }
+
+        
     }
 }
