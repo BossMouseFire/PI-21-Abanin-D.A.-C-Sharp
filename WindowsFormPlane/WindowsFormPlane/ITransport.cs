@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WindowsFormPlane
 {
-    interface ITransport
+    public interface ITransport
     {
         /// <summary>
         /// Установка позиции
@@ -28,5 +28,7 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="g"></param>
         void DrawTransport(Graphics g);
+
+
     }
 }

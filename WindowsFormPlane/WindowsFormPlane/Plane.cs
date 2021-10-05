@@ -12,7 +12,7 @@ namespace WindowsFormPlane
 		/// <summary>
 		/// Ширина отрисовки самолёта
 		/// </summary>
-		private readonly int planeWidth = 220;
+		private readonly int planeWidth = 210;
 
 		/// <summary>
 		/// Высота отрисовки самолёта

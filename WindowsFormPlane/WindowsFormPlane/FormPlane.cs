@@ -19,29 +19,21 @@ namespace WindowsFormPlane
             InitializeComponent();
         }
 
+        public void SetPlane(ITransport plane)
+        {
+            Random rnd = new Random();
+            this.plane = plane;
+            plane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBomber.Width, pictureBoxBomber.Height);
+            Draw();
+         }
+
         private void Draw()
         {
             Bitmap bmp = new Bitmap(pictureBoxBomber.Width, pictureBoxBomber.Height);
             Graphics gr = Graphics.FromImage(bmp);
 
-            plane.DrawTransport(gr);
+            plane?.DrawTransport(gr);
             pictureBoxBomber.Image = bmp;
-        }
-
-        private void buttonCreatePlane_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            plane = new Plane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black);
-            plane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBomber.Width, pictureBoxBomber.Height);
-            Draw();
-        }
-
-        private void buttonCreateBomber_Click(object sender, EventArgs e)
-        {
-            Random rnd = new Random();
-            plane = new Bomber(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Black, Color.DarkRed, true, true);
-            plane.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxBomber.Width, pictureBoxBomber.Height);
-            Draw();
         }
 
         private void buttonMove_Click(object sender, EventArgs e)

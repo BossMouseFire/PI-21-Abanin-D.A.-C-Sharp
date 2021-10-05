@@ -30,12 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPlane));
             this.pictureBoxBomber = new System.Windows.Forms.PictureBox();
-            this.buttonCreatePlane = new System.Windows.Forms.Button();
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonLeft = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
-            this.buttonCreateBomber = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBomber)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,16 +45,6 @@
             this.pictureBoxBomber.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxBomber.TabIndex = 0;
             this.pictureBoxBomber.TabStop = false;
-            // 
-            // buttonCreatePlane
-            // 
-            this.buttonCreatePlane.Location = new System.Drawing.Point(12, 8);
-            this.buttonCreatePlane.Name = "buttonCreatePlane";
-            this.buttonCreatePlane.Size = new System.Drawing.Size(124, 30);
-            this.buttonCreatePlane.TabIndex = 1;
-            this.buttonCreatePlane.Text = "Создать самолёт";
-            this.buttonCreatePlane.UseVisualStyleBackColor = true;
-            this.buttonCreatePlane.Click += new System.EventHandler(this.buttonCreatePlane_Click);
             // 
             // buttonUp
             // 
@@ -106,27 +94,15 @@
             this.buttonRight.UseVisualStyleBackColor = true;
             this.buttonRight.Click += new System.EventHandler(this.buttonMove_Click);
             // 
-            // buttonCreateBomber
-            // 
-            this.buttonCreateBomber.Location = new System.Drawing.Point(153, 8);
-            this.buttonCreateBomber.Name = "buttonCreateBomber";
-            this.buttonCreateBomber.Size = new System.Drawing.Size(180, 30);
-            this.buttonCreateBomber.TabIndex = 7;
-            this.buttonCreateBomber.Text = "Создать бомбардировщик";
-            this.buttonCreateBomber.UseVisualStyleBackColor = true;
-            this.buttonCreateBomber.Click += new System.EventHandler(this.buttonCreateBomber_Click);
-            // 
             // FormPlane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
-            this.Controls.Add(this.buttonCreateBomber);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonLeft);
             this.Controls.Add(this.buttonUp);
-            this.Controls.Add(this.buttonCreatePlane);
             this.Controls.Add(this.pictureBoxBomber);
             this.Name = "FormPlane";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -139,12 +115,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxBomber;
-        private System.Windows.Forms.Button buttonCreatePlane;
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonLeft;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRight;
-        private System.Windows.Forms.Button buttonCreateBomber;
     }
 }
 
