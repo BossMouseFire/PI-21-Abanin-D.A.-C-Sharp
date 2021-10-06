@@ -24,7 +24,7 @@ namespace WindowsFormPlane
         /// <summary>
         /// Размер парковочного места (ширина)
         /// </summary>
-        private readonly int _placeSizeWidth = 210;
+        private readonly int _placeSizeWidth = 223;
         /// <summary>
         /// Размер парковочного места (высота)
         /// </summary>
@@ -74,7 +74,7 @@ namespace WindowsFormPlane
         /// <param name="p">Парковка</param>
         public static T operator -(Parking<T> p, int index)
         {
-            if (index < p._places.Length)
+            if (index < p._places.Length || index > p._places.Length)
             {
                 T plane = p._places[index];
                 p._places[index] = null;
