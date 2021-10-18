@@ -1,13 +1,17 @@
 ﻿using System.Drawing;
-
+using System.Collections.Generic;
 namespace WindowsFormPlane
 {
-    public class Parking<T> where T : class, ITransport
+    public class Hangar<T> where T : class, ITransport
     {
         /// <summary>
-        /// Массив объектов, которые храним
+        /// Список объектов, которые храним
         /// </summary>
-        private readonly T[] _places;
+        private readonly List<T> _places;
+        /// <summary>
+        /// Максимальное количество мест на парковке
+        /// </summary>
+        private readonly int _maxCount;
         /// <summary>
         /// Ширина окна отрисовки
         /// </summary>
@@ -29,11 +33,12 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
-        public Parking(int picWidth, int picHeight)
+        public Hangar(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _maxCount = width * height;
+            _places = new List<T>();
             pictureWidth = picWidth;
             pictureHeight = picHeight;
         }
@@ -44,11 +49,24 @@ namespace WindowsFormPlane
         /// <param name="p">Парковка</param>
         /// <param name="car">Добавляемый автомобиль</param>
         /// <returns></returns>
-        public static int operator +(Parking<T> p, T plane)
+        public static bool operator +(Hangar<T> p, T plane)
         {
-            for (int i = 0; i < p._places.Length; i++)
+            for (int i = 0; i < p._maxCount; i++)
             {
-                if (p._places[i] == null)
+                bool isNullObject = p._places.Count > i && p._places[i] == null;
+                if (isNullObject)
+                {
+                    int indexWidth = p.pictureWidth / p._placeSizeWidth;
+                    int indexHeight = p.pictureHeight / p._placeSizeHeight;
+                    plane.SetPosition(
+                        p._placeSizeWidth * (i % indexWidth),
+                        p._placeSizeHeight * (i / indexHeight),
+                        p._placeSizeWidth, p._placeSizeHeight);
+
+                    p._places[i] = plane;
+                    return true;
+                }
+                else if (p._places.Count <= i)
                 {
                     int indexWidth = p.pictureWidth / p._placeSizeWidth;
                     int indexHeight = p.pictureHeight / p._placeSizeHeight;
@@ -56,20 +74,20 @@ namespace WindowsFormPlane
                         p._placeSizeWidth * (i % indexWidth), 
                         p._placeSizeHeight * (i / indexHeight), 
                         p._placeSizeWidth, p._placeSizeHeight);
-                    p._places[i] = plane;
-                    return i;
+                    p._places.Add(plane);
+                    return true;
                 }
             }
-            return -1;
+            return false;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
         /// Логика действия: с парковки забираем автомобиль
         /// </summary>
         /// <param name="p">Парковка</param>
-        public static T operator -(Parking<T> p, int index)
+        public static T operator -(Hangar<T> p, int index)
         {
-            if (index < p._places.Length || index > p._places.Length)
+            if ((index < p._maxCount || index > 0) && index < p._places.Count)
             {
                 T plane = p._places[index];
                 p._places[index] = null;
@@ -84,9 +102,12 @@ namespace WindowsFormPlane
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i]?.DrawTransport(g);
+                if (_places[i] != null)
+                {
+                    _places[i].DrawTransport(g);
+                }
             }
         }
         /// <summary>
