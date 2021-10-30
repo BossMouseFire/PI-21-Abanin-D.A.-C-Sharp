@@ -51,32 +51,10 @@ namespace WindowsFormPlane
         /// <returns></returns>
         public static bool operator +(Hangar<T> p, T plane)
         {
-            for (int i = 0; i < p._maxCount; i++)
+            if (p._places.Count < p._maxCount)
             {
-                bool isNullObject = p._places.Count > i && p._places[i] == null;
-                if (isNullObject)
-                {
-                    int indexWidth = p.pictureWidth / p._placeSizeWidth;
-                    int indexHeight = p.pictureHeight / p._placeSizeHeight;
-                    plane.SetPosition(
-                        p._placeSizeWidth * (i % indexWidth),
-                        p._placeSizeHeight * (i / indexHeight),
-                        p._placeSizeWidth, p._placeSizeHeight);
-
-                    p._places[i] = plane;
-                    return true;
-                }
-                else if (p._places.Count <= i)
-                {
-                    int indexWidth = p.pictureWidth / p._placeSizeWidth;
-                    int indexHeight = p.pictureHeight / p._placeSizeHeight;
-                    plane.SetPosition(
-                        p._placeSizeWidth * (i % indexWidth), 
-                        p._placeSizeHeight * (i / indexHeight), 
-                        p._placeSizeWidth, p._placeSizeHeight);
-                    p._places.Add(plane);
-                    return true;
-                }
+                p._places.Add(plane);
+                return true;
             }
             return false;
         }
@@ -90,7 +68,7 @@ namespace WindowsFormPlane
             if ((index < p._maxCount || index > 0) && index < p._places.Count)
             {
                 T plane = p._places[index];
-                p._places[index] = null;
+                p._places.RemoveAt(index);
                 return plane;
             }
             return null;
@@ -104,10 +82,13 @@ namespace WindowsFormPlane
             DrawMarking(g);
             for (int i = 0; i < _places.Count; ++i)
             {
-                if (_places[i] != null)
-                {
-                    _places[i].DrawTransport(g);
-                }
+                int indexWidth = pictureWidth / _placeSizeWidth;
+                int indexHeight = pictureHeight / _placeSizeHeight;
+                _places[i].SetPosition(
+                        _placeSizeWidth * (i % indexWidth),
+                        _placeSizeHeight * (i / indexHeight),
+                        _placeSizeWidth, _placeSizeHeight);
+                _places[i].DrawTransport(g);
             }
         }
         /// <summary>
