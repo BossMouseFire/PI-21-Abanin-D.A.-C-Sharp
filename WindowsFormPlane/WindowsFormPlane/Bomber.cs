@@ -4,9 +4,9 @@ namespace WindowsFormPlane
 {
 	class Bomber: Plane
 	{
-		public bool StateBombs { private set; get; }
+		public bool StateBombs {set; get; }
 
-		public bool StateGun { private set; get; }
+		public bool StateGun { set; get; }
 
 		public Color AdditionalColor
 		{ private set; get; }
@@ -49,5 +49,9 @@ namespace WindowsFormPlane
 			}
 		}
 
+		public void SetAddColor(Color color)
+        {
+			AdditionalColor = color;
+        }
 	}
 }

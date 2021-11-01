@@ -23,11 +23,11 @@ namespace WindowsFormPlane
         /// <summary>
         /// Максимальная скорость
         /// </summary>
-        public int MaxSpeed { protected set; get; }
+        public int MaxSpeed { set; get; }
         /// <summary>
         /// Вес Самолёта
         /// </summary>
-        public float Weight { protected set; get; }
+        public float Weight { set; get; }
         /// <summary>
         /// Основной цвет самолёта
         /// </summary>
@@ -42,5 +42,9 @@ namespace WindowsFormPlane
         public abstract void DrawTransport(Graphics g);
         public abstract void MoveTransport(Direction direction);
 
+        public void SetMainColor(Color coclor)
+        {
+            MainColor = coclor;
+        }
     }
 }

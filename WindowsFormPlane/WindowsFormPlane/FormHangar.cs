@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormPlane
@@ -90,53 +84,26 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        /// 
+        ///
+
         private void buttonSetPlane_Click(object sender, EventArgs e)
         {
-            if (listBoxHangars.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var plane = new Plane(100, 1000, dialog.Color);
-                    if (hangarCollection[listBoxHangars.SelectedItem.ToString()] + plane)
-                    {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ангар переполнен");
-                    }
-                }
-            }
+            var formPlaneConfig = new FormPlaneConfig();
+            formPlaneConfig.AddEvent(AddPlane);
+            formPlaneConfig.Show();
         }
-
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать бомбардировщик"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonSetBomber_Click(object sender, EventArgs e)
+       
+        private void AddPlane (Vehicle plane)
         {
-            if (listBoxHangars.SelectedIndex > -1)
+            if (plane != null && listBoxHangars.SelectedIndex > -1)
             {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (hangarCollection[listBoxHangars.SelectedItem.ToString()] + plane)
                 {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var plane = new Bomber(100, 1000, dialog.Color, dialogDop.Color,
-                        true, true);
-                        if (hangarCollection[listBoxHangars.SelectedItem.ToString()] + plane)
-                        {
-                            Draw();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Ангар переполнен");
-                        }
-                    }
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Ангар переполнен");
                 }
             }
         }
