@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace WindowsFormPlane
 {
@@ -17,6 +18,20 @@ namespace WindowsFormPlane
 			AdditionalColor = additionalColor;
 			StateBombs = stateBombs;
 			StateGun = stateGun;
+		}
+
+		public Bomber(string info) : base(info)
+		{
+			string[] strs = info.Split(separator);
+			if (strs.Length == 6)
+			{
+				MaxSpeed = Convert.ToInt32(strs[0]);
+				Weight = Convert.ToInt32(strs[1]);
+				MainColor = Color.FromName(strs[2]);
+				AdditionalColor = Color.FromName(strs[3]);
+				StateBombs = Convert.ToBoolean(strs[4]);
+				StateGun = Convert.ToBoolean(strs[5]);
+			}
 		}
 
 		public override void DrawTransport(Graphics g)
@@ -53,5 +68,12 @@ namespace WindowsFormPlane
         {
 			AdditionalColor = color;
         }
+
+		public override string ToString()
+		{
+			return
+		   $"{base.ToString()}{separator}{AdditionalColor.Name}{separator}{StateBombs}{separator}{StateBombs}";
+		}
+
 	}
 }

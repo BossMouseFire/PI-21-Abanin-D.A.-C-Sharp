@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace WindowsFormPlane
 {
@@ -15,6 +16,11 @@ namespace WindowsFormPlane
 		private readonly int planeHeight = 140;
 
 		/// <summary>
+		/// Разделитель для записи информации по объекту в файл
+		/// </summary>
+		protected readonly char separator = ';';
+
+		/// <summary>
 		/// Конструктор
 		/// </summary>
 		/// <param name="maxSpeed">Максимальная скорость</param>
@@ -27,6 +33,20 @@ namespace WindowsFormPlane
 			MainColor = mainColor;
 		}
 
+		/// <summary>
+		/// Конструктор для загрузки с файла
+		/// </summary>
+		/// <param name="info">Информация по объекту</param>
+		public Plane(string info)
+		{
+			string[] strs = info.Split(separator);
+			if (strs.Length == 3)
+			{
+				MaxSpeed = Convert.ToInt32(strs[0]);
+				Weight = Convert.ToInt32(strs[1]);
+				MainColor = Color.FromName(strs[2]);
+			}
+		}
 
 		/// <summary>
 		/// Конструкторс изменением размеров машины
@@ -127,6 +147,11 @@ namespace WindowsFormPlane
 			};
 
 			g.FillPolygon(brMain, pointsLowerWing);
+		}
+
+		public override string ToString()
+		{
+			return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
 		}
 	}
 }
