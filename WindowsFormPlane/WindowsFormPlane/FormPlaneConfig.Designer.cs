@@ -49,12 +49,12 @@
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkBoxRadar = new System.Windows.Forms.CheckBox();
+            this.checkBoxBombs = new System.Windows.Forms.CheckBox();
             this.numericWeightPlane = new System.Windows.Forms.NumericUpDown();
             this.numericMaxSpeed = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBoxBombs = new System.Windows.Forms.CheckBox();
-            this.checkBoxRadar = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panelPlane.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlane)).BeginInit();
@@ -202,7 +202,7 @@
             // 
             // panel6
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.panel6.BackColor = System.Drawing.Color.Blue;
             this.panel6.Location = new System.Drawing.Point(227, 91);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(30, 30);
@@ -229,7 +229,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panel3.BackColor = System.Drawing.Color.Orange;
             this.panel3.Location = new System.Drawing.Point(20, 135);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(30, 30);
@@ -287,6 +287,32 @@
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Параметры";
+            // 
+            // checkBoxRadar
+            // 
+            this.checkBoxRadar.AutoSize = true;
+            this.checkBoxRadar.Checked = true;
+            this.checkBoxRadar.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxRadar.Location = new System.Drawing.Point(239, 96);
+            this.checkBoxRadar.Name = "checkBoxRadar";
+            this.checkBoxRadar.Size = new System.Drawing.Size(57, 17);
+            this.checkBoxRadar.TabIndex = 5;
+            this.checkBoxRadar.Text = "Радар";
+            this.checkBoxRadar.UseVisualStyleBackColor = true;
+            this.checkBoxRadar.CheckedChanged += new System.EventHandler(this.checkBoxRadar_CheckedChanged);
+            // 
+            // checkBoxBombs
+            // 
+            this.checkBoxBombs.AutoSize = true;
+            this.checkBoxBombs.Checked = true;
+            this.checkBoxBombs.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxBombs.Location = new System.Drawing.Point(239, 61);
+            this.checkBoxBombs.Name = "checkBoxBombs";
+            this.checkBoxBombs.Size = new System.Drawing.Size(61, 17);
+            this.checkBoxBombs.TabIndex = 4;
+            this.checkBoxBombs.Text = "Бомбы";
+            this.checkBoxBombs.UseVisualStyleBackColor = true;
+            this.checkBoxBombs.CheckedChanged += new System.EventHandler(this.checkBoxBombs_CheckedChanged);
             // 
             // numericWeightPlane
             // 
@@ -351,32 +377,6 @@
             this.label3.Size = new System.Drawing.Size(90, 13);
             this.label3.TabIndex = 0;
             this.label3.Text = "Макс. скорость:";
-            // 
-            // checkBoxBombs
-            // 
-            this.checkBoxBombs.AutoSize = true;
-            this.checkBoxBombs.Checked = true;
-            this.checkBoxBombs.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxBombs.Location = new System.Drawing.Point(239, 61);
-            this.checkBoxBombs.Name = "checkBoxBombs";
-            this.checkBoxBombs.Size = new System.Drawing.Size(61, 17);
-            this.checkBoxBombs.TabIndex = 4;
-            this.checkBoxBombs.Text = "Бомбы";
-            this.checkBoxBombs.UseVisualStyleBackColor = true;
-            this.checkBoxBombs.CheckedChanged += new System.EventHandler(this.checkBoxBombs_CheckedChanged);
-            // 
-            // checkBoxRadar
-            // 
-            this.checkBoxRadar.AutoSize = true;
-            this.checkBoxRadar.Checked = true;
-            this.checkBoxRadar.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxRadar.Location = new System.Drawing.Point(239, 96);
-            this.checkBoxRadar.Name = "checkBoxRadar";
-            this.checkBoxRadar.Size = new System.Drawing.Size(57, 17);
-            this.checkBoxRadar.TabIndex = 5;
-            this.checkBoxRadar.Text = "Радар";
-            this.checkBoxRadar.UseVisualStyleBackColor = true;
-            this.checkBoxRadar.CheckedChanged += new System.EventHandler(this.checkBoxRadar_CheckedChanged);
             // 
             // FormPlaneConfig
             // 

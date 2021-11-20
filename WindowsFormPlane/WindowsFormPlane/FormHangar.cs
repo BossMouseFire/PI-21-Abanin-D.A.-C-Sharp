@@ -92,7 +92,6 @@ namespace WindowsFormPlane
             formPlaneConfig.AddEvent(AddPlane);
             formPlaneConfig.Show();
         }
-       
         private void AddPlane (Vehicle plane)
         {
             if (plane != null && listBoxHangars.SelectedIndex > -1)

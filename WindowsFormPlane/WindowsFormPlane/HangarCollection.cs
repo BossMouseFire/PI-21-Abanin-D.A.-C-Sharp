@@ -132,54 +132,49 @@ namespace WindowsFormPlane
 
             using (StreamReader fs = new StreamReader(filename))
             {
-                int lineNumber = 0;
                 string line = fs.ReadLine();
-                while(line != null)
+
+                if (line.Contains("HangarCollection"))
                 {
-                    if (lineNumber == 0)
+                    hangarStages.Clear();
+                    line = fs.ReadLine();
+                }
+                else
+                {
+                    return false;
+                }
+
+                while (line != null)
+                {
+                    Vehicle plane = null;
+                    if (line.Contains("Hangar") && !hangarStages.ContainsKey(line.Split(separator)[1]))
                     {
-                        if (line.Contains("HangarCollection"))
-                        {
-                            hangarStages.Clear();
-                        }
-                        else
+                        //начинаем новую парковку
+                        key = line.Split(separator)[1];
+                        hangarStages.Add(key, new Hangar<Vehicle>(pictureWidth,
+                        pictureHeight));
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(line))
+                    {
+                        continue;
+                    }
+                    if (line.Split(separator)[0] == "Plane")
+                    {
+                        plane = new Plane(line.Split(separator)[1]);
+                    }
+                    else if (line.Split(separator)[0] == "Bomber")
+                    {
+                        plane = new Bomber(line.Split(separator)[1]);
+                    }
+                    if (plane != null)
+                    {
+                        var result = hangarStages[key] + plane;
+                        if (!result)
                         {
                             return false;
                         }
                     }
-                    else
-                    {
-                        Vehicle plane = null;
-                        if (line.Contains("Hangar") && !hangarStages.ContainsKey(line.Split(separator)[1]))
-                        {
-                            //начинаем новую парковку
-                            key = line.Split(separator)[1];
-                            hangarStages.Add(key, new Hangar<Vehicle>(pictureWidth,
-                            pictureHeight));
-                            continue;
-                        }
-                        if (string.IsNullOrEmpty(line))
-                        {
-                            continue;
-                        }
-                        if (line.Split(separator)[0] == "Plane")
-                        {
-                            plane = new Plane(line.Split(separator)[1]);
-                        }
-                        else if (line.Split(separator)[0] == "Bomber")
-                        {
-                            plane = new Bomber(line.Split(separator)[1]);
-                        }
-                        if (plane != null)
-                        {
-                            var result = hangarStages[key] + plane;
-                            if (!result)
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                    lineNumber++;
                     line = fs.ReadLine();
                 }
             }

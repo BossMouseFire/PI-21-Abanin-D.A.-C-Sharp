@@ -33,6 +33,8 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
+        
+
         public Hangar(int picWidth, int picHeight)
         {
             int width = picWidth / _placeSizeWidth;
@@ -73,6 +75,7 @@ namespace WindowsFormPlane
             }
             return null;
         }
+
         /// <summary>
         /// Метод отрисовки парковки
         /// </summary>

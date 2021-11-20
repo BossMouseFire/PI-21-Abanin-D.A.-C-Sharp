@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace WindowsFormPlane
 {
@@ -9,6 +10,7 @@ namespace WindowsFormPlane
         Vehicle plane = null;
 
         private event Action<Vehicle> eventAddPlane;
+
         public FormPlaneConfig()
         {
             InitializeComponent();
