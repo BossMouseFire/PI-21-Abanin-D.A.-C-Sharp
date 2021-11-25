@@ -53,12 +53,12 @@ namespace WindowsFormPlane
         /// <returns></returns>
         public static bool operator +(Hangar<T> p, T plane)
         {
-            if (p._places.Count < p._maxCount)
+            if (p._places.Count >= p._maxCount)
             {
-                p._places.Add(plane);
-                return true;
+                throw new HangarOverflowException();
             }
-            return false;
+            p._places.Add(plane);
+            return true;
         }
         /// <summary>
         /// Перегрузка оператора вычитания
@@ -67,13 +67,13 @@ namespace WindowsFormPlane
         /// <param name="p">Парковка</param>
         public static T operator -(Hangar<T> p, int index)
         {
-            if ((index < p._maxCount || index > 0) && index < p._places.Count)
+            if (index < 0  || index >= p._places.Count)
             {
-                T plane = p._places[index];
-                p._places.RemoveAt(index);
-                return plane;
+                throw new HangarNotFoundException(index);
             }
-            return null;
+            T plane = p._places[index];
+            p._places.RemoveAt(index);
+            return plane;
         }
 
         /// <summary>

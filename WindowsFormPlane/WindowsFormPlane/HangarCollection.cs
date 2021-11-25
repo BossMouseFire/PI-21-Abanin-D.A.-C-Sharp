@@ -80,7 +80,7 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="filename">Путь и имя файла</param>
         /// <returns></returns>
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -114,7 +114,6 @@ namespace WindowsFormPlane
                     }
                 }
             }
-            return true;
         }
 
         /// <summary>
@@ -122,11 +121,11 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
             string key = string.Empty;
 
@@ -141,7 +140,7 @@ namespace WindowsFormPlane
                 }
                 else
                 {
-                    return false;
+                    throw new HangarWrongFormatLoad();
                 }
 
                 while (line != null)
@@ -172,13 +171,12 @@ namespace WindowsFormPlane
                         var result = hangarStages[key] + plane;
                         if (!result)
                         {
-                            return false;
+                            throw new HangarWrongPlaneLoad();
                         }
                     }
                     line = fs.ReadLine();
                 }
             }
-            return true;
         }
     }
 }
