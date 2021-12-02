@@ -200,13 +200,13 @@ namespace WindowsFormPlane
                     ReloadHangars();
                     Draw();
                 }
-                catch (HangarWrongFormatLoad ex)
+                catch (FormatException ex)
                 {
                     logger.Warn($"Ошибка при загрузке данных: {ex.Message}");
                     MessageBox.Show(ex.Message, "Формат файла", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                 }
-                catch (HangarWrongPlaneLoad ex)
+                catch (TypeLoadException ex)
                 {
                     logger.Warn($"Ошибка при загрузке данных: {ex.Message}");
                     MessageBox.Show(ex.Message, "Загрузка самолёта", MessageBoxButtons.OK,

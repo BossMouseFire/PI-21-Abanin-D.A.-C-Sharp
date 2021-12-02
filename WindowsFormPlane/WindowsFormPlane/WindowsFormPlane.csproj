@@ -77,8 +77,6 @@
     <Compile Include="HangarCollection.cs" />
     <Compile Include="HangarNotFoundException.cs" />
     <Compile Include="HangarOverflowException.cs" />
-    <Compile Include="HangarWrongFormatLoad.cs" />
-    <Compile Include="HangarWrongPlaneLoad.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="Hangar.cs" />
     <Compile Include="Plane.cs" />

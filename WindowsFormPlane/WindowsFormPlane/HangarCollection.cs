@@ -140,7 +140,7 @@ namespace WindowsFormPlane
                 }
                 else
                 {
-                    throw new HangarWrongFormatLoad();
+                    throw new FormatException("Задан неверный формат.");
                 }
 
                 while (line != null)
@@ -171,7 +171,7 @@ namespace WindowsFormPlane
                         var result = hangarStages[key] + plane;
                         if (!result)
                         {
-                            throw new HangarWrongPlaneLoad();
+                            throw new TypeLoadException("Ангар переполнен");
                         }
                     }
                     line = fs.ReadLine();
