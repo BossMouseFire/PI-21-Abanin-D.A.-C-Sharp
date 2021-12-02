@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace WindowsFormPlane
 {
-	class Bomber: Plane
+	class Bomber: Plane, IEquatable<Bomber>
 	{
 		public bool StateBombs {set; get; }
 
@@ -73,6 +73,40 @@ namespace WindowsFormPlane
 		{
 			return
 		   $"{base.ToString()}{separator}{AdditionalColor.Name}{separator}{StateBombs}{separator}{StateBombs}";
+		}
+
+		public bool Equals(Bomber other)
+		{
+			if (AdditionalColor != other.AdditionalColor)
+            {
+				return false;
+            }
+			if (StateBombs != other.StateBombs)
+			{
+				return false;
+			}
+			if (StateGun != other.StateGun)
+			{
+				return false;
+			}
+
+			return base.Equals(other);
+		}
+
+		public override bool Equals(Object obj)
+		{
+			if (obj == null)
+			{
+		    return false;
+			}
+			if (!(obj is Bomber planeObj))
+			{
+				return false;
+			}
+			else
+			{
+				return Equals(planeObj);
+			}
 		}
 
 	}

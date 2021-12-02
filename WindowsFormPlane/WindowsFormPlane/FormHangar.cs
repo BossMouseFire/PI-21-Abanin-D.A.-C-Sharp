@@ -118,6 +118,11 @@ namespace WindowsFormPlane
                MessageBoxIcon.Error);
                 logger.Warn($"Ошибка при добавлении самолёта: {ex.Message}");
             }
+            catch (HangarAlreadyHaveException ex)
+            {
+                MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
             catch (Exception ex)
             {
                 logger.Warn($"Ошибка при добавлении самолёта: {ex.Message}");
@@ -219,6 +224,17 @@ namespace WindowsFormPlane
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void buttonSort_Click(object sender, EventArgs e)
+        {
+            if (listBoxHangars.SelectedIndex > -1)
+            {
+                hangarCollection[listBoxHangars.SelectedItem.ToString()].Sort();
+                Draw();
+                logger.Info("Сортировка уровней");
+            }
+
         }
     }
 }

@@ -45,6 +45,7 @@
             this.loadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -127,7 +128,7 @@
             // listBoxHangars
             // 
             this.listBoxHangars.FormattingEnabled = true;
-            this.listBoxHangars.Location = new System.Drawing.Point(679, 126);
+            this.listBoxHangars.Location = new System.Drawing.Point(679, 108);
             this.listBoxHangars.Name = "listBoxHangars";
             this.listBoxHangars.Size = new System.Drawing.Size(114, 95);
             this.listBoxHangars.TabIndex = 7;
@@ -135,7 +136,7 @@
             // 
             // buttonDelHangar
             // 
-            this.buttonDelHangar.Location = new System.Drawing.Point(679, 243);
+            this.buttonDelHangar.Location = new System.Drawing.Point(679, 209);
             this.buttonDelHangar.Name = "buttonDelHangar";
             this.buttonDelHangar.Size = new System.Drawing.Size(114, 23);
             this.buttonDelHangar.TabIndex = 8;
@@ -145,7 +146,7 @@
             // 
             // buttonSetPlane
             // 
-            this.buttonSetPlane.Location = new System.Drawing.Point(679, 283);
+            this.buttonSetPlane.Location = new System.Drawing.Point(679, 295);
             this.buttonSetPlane.Name = "buttonSetPlane";
             this.buttonSetPlane.Size = new System.Drawing.Size(114, 37);
             this.buttonSetPlane.TabIndex = 9;
@@ -175,14 +176,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.saveToolStripMenuItem.Text = "Сохранить";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadingToolStripMenuItem
             // 
             this.loadingToolStripMenuItem.Name = "loadingToolStripMenuItem";
-            this.loadingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadingToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.loadingToolStripMenuItem.Text = "Загрузить";
             this.loadingToolStripMenuItem.Click += new System.EventHandler(this.loadingToolStripMenuItem_Click);
             // 
@@ -195,11 +196,22 @@
             this.openFileDialog.FileName = "openFileDialog1";
             this.openFileDialog.Filter = "txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(679, 250);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(114, 23);
+            this.buttonSort.TabIndex = 11;
+            this.buttonSort.Text = "Сортировать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormHangar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonSetPlane);
             this.Controls.Add(this.buttonDelHangar);
             this.Controls.Add(this.listBoxHangars);
@@ -241,5 +253,6 @@
         private System.Windows.Forms.ToolStripMenuItem loadingToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonSort;
     }
 }

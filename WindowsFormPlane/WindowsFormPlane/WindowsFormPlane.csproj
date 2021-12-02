@@ -79,7 +79,9 @@
     <Compile Include="HangarOverflowException.cs" />
     <Compile Include="ITransport.cs" />
     <Compile Include="Hangar.cs" />
+    <Compile Include="ParkingAlreadyHaveException.cs" />
     <Compile Include="Plane.cs" />
+    <Compile Include="PlaneComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vehicle.cs" />

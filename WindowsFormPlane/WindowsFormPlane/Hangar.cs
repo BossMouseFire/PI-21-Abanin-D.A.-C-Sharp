@@ -1,8 +1,10 @@
 ﻿using System.Drawing;
 using System.Collections.Generic;
+using System.Collections;
+
 namespace WindowsFormPlane
 {
-    public class Hangar<T> where T : class, ITransport
+    public class Hangar<T>: IEnumerator<T>, IEnumerable<T>  where T : class, ITransport
     {
         /// <summary>
         /// Список объектов, которые храним
@@ -33,7 +35,11 @@ namespace WindowsFormPlane
         /// </summary>
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
-        
+
+        private int _currentIndex;
+        public T Current => _places[_currentIndex];
+        object IEnumerator.Current => _places[_currentIndex];
+
 
         public Hangar(int picWidth, int picHeight)
         {
@@ -57,6 +63,12 @@ namespace WindowsFormPlane
             {
                 throw new HangarOverflowException();
             }
+
+            if (p._places.Contains(plane))
+            {
+                throw new HangarAlreadyHaveException();
+            }
+
             p._places.Add(plane);
             return true;
         }
@@ -127,5 +139,36 @@ namespace WindowsFormPlane
             }
             return _places[index];
         }
+
+        public void Sort() => _places.Sort((IComparer<T>) new PlaneComparer());
+     
+        public void Dispose()
+        {
+        }
+        public bool MoveNext()
+        {
+            if (++_currentIndex >= _places.Count)
+            {
+                _currentIndex = 0;
+                return false;
+            }
+            return true;
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+        
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+        
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
+
     }
 }

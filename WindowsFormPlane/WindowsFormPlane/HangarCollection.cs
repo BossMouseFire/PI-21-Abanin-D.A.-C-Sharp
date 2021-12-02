@@ -93,24 +93,19 @@ namespace WindowsFormPlane
                 {
                     //Начинаем парковку
                     sw.Write($"Hangar{separator}{level.Key}{Environment.NewLine}");
-                    ITransport plane = null;
-                    for (int i = 0; (plane = level.Value.GetNext(i)) != null; i++)
+
+                    foreach(ITransport plane in level.Value)
                     {
-                        if (plane != null)
+                        if (plane.GetType().Name == "Plane")
                         {
-                            //если место не пустое
-                            //Записываем тип машины
-                            if (plane.GetType().Name == "Plane")
-                            {
-                                sw.Write($"Plane{separator}");
-                            }
-                            if (plane.GetType().Name == "Bomber")
-                            {
-                                sw.Write($"Bomber{separator}");
-                            }
-                            //Записываемые параметры
-                            sw.Write(plane + Environment.NewLine);
+                            sw.Write($"Plane{separator}");
                         }
+                        if (plane.GetType().Name == "Bomber")
+                        {
+                            sw.Write($"Bomber{separator}");
+                        }
+                        //Записываемые параметры
+                        sw.Write(plane + Environment.NewLine);
                     }
                 }
             }
