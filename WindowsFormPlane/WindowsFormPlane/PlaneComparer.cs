@@ -11,6 +11,15 @@ namespace WindowsFormPlane
         public int Compare(Vehicle x, Vehicle y)
         {
 
+            if (x is Bomber && y is Bomber)
+            {
+                return ComparerBomber((Bomber)x, (Bomber)y);
+            }
+            return ComparerPlane((Plane)x, (Plane)y);
+        }
+
+        private int ComparerPlane(Plane x, Plane y)
+        {
             if (x.MaxSpeed != y.MaxSpeed)
             {
                 return x.MaxSpeed.CompareTo(y.MaxSpeed);
@@ -26,19 +35,9 @@ namespace WindowsFormPlane
             return 0;
         }
 
-        private int ComparerCar(Plane x, Plane y)
+        private int ComparerBomber(Bomber x, Bomber y)
         {
-            var res = Compare(x, y);
-            if (res != 0)
-            {
-                return res;
-            }
-            return 0;
-        }
-
-        private int ComparerSportCar(Bomber x, Bomber y)
-        {
-            var res = ComparerCar(x, y);
+            var res = ComparerPlane(x, y);
             if (res != 0)
             {
                 return res;
