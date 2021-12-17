@@ -15,7 +15,22 @@ namespace WindowsFormPlane
             {
                 return ComparerBomber((Bomber)x, (Bomber)y);
             }
-            return ComparerPlane((Plane)x, (Plane)y);
+
+            if (x is Bomber && y is Plane)
+            {
+                return 1;
+            }
+            if (x is Plane && y is Bomber)
+            {
+                return -1;
+            }
+
+            if (x is Plane && y is Plane)
+            {
+                return ComparerPlane((Plane)x, (Plane)y);
+            }
+
+            return 0;
         }
 
         private int ComparerPlane(Plane x, Plane y)

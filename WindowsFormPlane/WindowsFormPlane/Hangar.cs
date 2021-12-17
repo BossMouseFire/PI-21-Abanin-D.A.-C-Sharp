@@ -36,7 +36,7 @@ namespace WindowsFormPlane
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
 
-        private int _currentIndex;
+        private int _currentIndex = -1;
         public T Current => _places[_currentIndex];
         object IEnumerator.Current => _places[_currentIndex];
 
@@ -147,12 +147,8 @@ namespace WindowsFormPlane
         }
         public bool MoveNext()
         {
-            if (++_currentIndex >= _places.Count)
-            {
-                _currentIndex = 0;
-                return false;
-            }
-            return true;
+            _currentIndex++;
+            return _currentIndex < _places.Count;
         }
 
         public void Reset()

@@ -220,7 +220,7 @@ namespace WindowsFormPlane
                 catch (Exception ex)
                 {
                     logger.Warn($"Ошибка при загрузке данных: {ex.Message}");
-                    MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
+                    MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузке",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
